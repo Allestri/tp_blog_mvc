@@ -24,7 +24,7 @@
                 <p>
                     <?php echo(htmlspecialchars($data['content'])) ?>
                 </p>
-				<a href="#">Commentaires</a>
+				<a href="post.php?postId=<?php echo $data['id']; ?>">Commentaires</a>
             </div>
         <?php
         }
