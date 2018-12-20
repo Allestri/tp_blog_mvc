@@ -1,15 +1,22 @@
 <?php
+// Connexion BDD
+function dbConnect()
+{
+	try
+	{
+		$db = new PDO('mysql:host=localhost;dbname=tp_blog_mvc;charset=utf8', 'root', '');
+		return $db;
+	}
+	catch(Exception $e)
+	{
+			die('Erreur : '.$e->getMessage());
+	}
+}
+
 function getPosts()
 {
-    try
-    {
-        $db = new PDO('mysql:host=localhost;dbname=tp_blog_mvc;charset=utf8', 'root', '');
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
-	
+
+	$db = dbConnect();
 	// Recuperation billets
 	$request = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY id DESC LIMIT 0, 10');
 
@@ -18,16 +25,7 @@ function getPosts()
 
 function getPost($postId)
 {
-	
-	try
-    {
-        $db = new PDO('mysql:host=localhost;dbname=tp_blog_mvc;charset=utf8', 'root', '');
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
-	
+	$db = dbConnect();
 	// Recuperation billet
 	$request = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') 
 	AS creation_date_fr FROM posts WHERE id = ?');
@@ -49,16 +47,7 @@ return $post;
 
 function getComments($postId)
 {
-	
-	try
-    {
-        $db = new PDO('mysql:host=localhost;dbname=tp_blog_mvc;charset=utf8', 'root', '');
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
-	
+	$db = dbConnect();
 	//Recupération commentaires
 	$comments = $db->prepare('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') 
 	AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date');
@@ -67,4 +56,4 @@ function getComments($postId)
 	
 return $comments;
 }
-
+?>
