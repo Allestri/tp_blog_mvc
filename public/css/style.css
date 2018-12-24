@@ -1,0 +1,20 @@
+h1
+{
+	text-align:center;
+	color:white;
+	background-color:blue;
+}
+
+.billet
+{
+	width:30%;
+	margin:auto;
+	background-color:#CCCCCC;
+}
+
+.billet h3
+{
+	background-color:black;
+	color:white;
+	font-size:1.3em;
+}
