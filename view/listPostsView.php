@@ -1,7 +1,7 @@
 <?php $title ="Mon blog"; ?>
 <?php ob_start(); ?>
 
-
+<p>Derniers billets du blog</p>
 <?php
     while ($data = $posts->fetch())
     {
@@ -15,7 +15,7 @@
 		<p>
 			<?php echo(htmlspecialchars($data['content'])) ?>
 		</p>
-		<a href="post.php?postId=<?php echo $data['id']; ?>">Commentaires</a>
+		<a href="index.php?action=post&amp;id=<?php echo $data['id']; ?>">Commentaires</a>
 	</div>
 <?php
 }
