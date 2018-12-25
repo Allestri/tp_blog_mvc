@@ -32,11 +32,8 @@
 <?php $content = ob_get_clean();?>
 <?php require ('template.php'); ?>
 
-<!-- Formulaire commentaire
-			<form action="commentaires_post.php?postId= echo $_GET['postId'];" method="POST" id="commentform">
-				<p><label>Nom<input type="text" name="auteur"/></label>
-				<input type="submit" value="Envoyer"></p>
-			</form>
-			<textarea cols="40" rows="5" placeholder="Commentez ici ..." name="commentaire" form="commentform"></textarea>	
-			
--->
+<form action="index.php?action=addComment&amp;id=<?php echo $_GET['id'] ;?>" method="POST" id="commentform">
+	<p><label>Nom<input type="text" name="author"/></label>
+	<input type="submit" value="Envoyer"></p>
+</form>
+<textarea cols="40" rows="5" placeholder="Commentez ici ..." name="comment" form="commentform"></textarea>
