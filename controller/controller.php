@@ -1,20 +1,27 @@
 <?php 
 
-require('model/model.php');
+require_once('model/PostManager.php');
+require_once('model/CommentManager.php');
 
 function listPosts()
 {
 
-	$posts = getPosts();
+	$postManager = new PostManager(); // Creation objet
+	$posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
+	
 	require('view/listPostsView.php');
+	
 	
 }
 
 function post()
 {
 
-	$post = getPost($_GET['id']);
-	$comments = getComments($_GET['id']);
+	$postManager = new PostManager();
+	$commentManager = new CommentManager();
+	
+	$post = $postManager->getPost($_GET['id']);
+	$comments = $commentManager->getComments($_GET['id']);
 	
 	require ('view/postView.php');
 
@@ -22,7 +29,10 @@ function post()
 
 function addComment($postId, $author, $comment)
 {
-	$affectedLines = postComment($postId, $author, $comment);
+	
+	$commentManager = new CommentManager();
+	
+	$affectedLines = $commentManager->postComment($postId, $author, $comment);
 	
 	if ($affectedLines === false) {
 		// Erreur gerée. Elle sera remntée jusqu'au bloc try du routeur !
