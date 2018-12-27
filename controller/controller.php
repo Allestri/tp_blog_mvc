@@ -6,7 +6,7 @@ require_once('model/CommentManager.php');
 function listPosts()
 {
 
-	$postManager = new PostManager(); // Creation objet
+	$postManager = new Allestri\Blog\Model\PostManager(); // Creation objet
 	$posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
 	
 	require('view/listPostsView.php');
@@ -17,8 +17,8 @@ function listPosts()
 function post()
 {
 
-	$postManager = new PostManager();
-	$commentManager = new CommentManager();
+	$postManager = new Allestri\Blog\Model\PostManager();
+	$commentManager = new Allestri\Blog\Model\CommentManager();
 	
 	$post = $postManager->getPost($_GET['id']);
 	$comments = $commentManager->getComments($_GET['id']);
@@ -30,7 +30,7 @@ function post()
 function addComment($postId, $author, $comment)
 {
 	
-	$commentManager = new CommentManager();
+	$commentManager = new Allestri\Blog\Model\CommentManager();
 	
 	$affectedLines = $commentManager->postComment($postId, $author, $comment);
 	
